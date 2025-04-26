@@ -14,6 +14,7 @@ public class BoardResponseDto {
     private String title;
     private String content;
 
+
     //기본생성자
     public BoardResponseDto(){}
 

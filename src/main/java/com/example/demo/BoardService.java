@@ -14,7 +14,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    //작성글 목록 가져오는 메소드
+    //작성글 목록 가져오는 메소드 (엔티티만 사용)
     /*
     public List<Board> getBoardList() {
         return this.boardRepository.findAll();
@@ -64,7 +64,11 @@ public class BoardService {
         this.boardRepository.save(newBoard); //디비에 저장
     }
 
-
+    /*
+    public void updateBoard(Integer id, BoardRequestDto boardRequestDto) {
+        Board updateBoard = bo
+    }
+    */
 
 }
 

@@ -38,11 +38,16 @@ public class BoardController {
     }
 
     @PostMapping("/board/create")
-
     public String questionCreate(@RequestParam(value="title") String title, @RequestParam(value="content") String content) {
         // 질문을 저장
         this.boardService.createNewBoard(title,content);
         return "redirect:/board/list"; // 질문 저장후 질문목록으로 이동
     }
+
+    @GetMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable("id") Integer id) {
+        return "board_form";
+    }
+
 
 }

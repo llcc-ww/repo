@@ -1,6 +1,9 @@
 package com.example.demo;
 
-public class BoardRequestDto {
+import lombok.Getter;
+
+@Getter
+public class BoardRequestDto { //새 글 등록하거나 수정하는 등, 클라이언트가 입력한 데이터 처리에 사용
 
     private String title;
     private String content;

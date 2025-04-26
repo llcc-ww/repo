@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 
 @Entity
 @Getter
@@ -19,7 +21,10 @@ public class Board {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+
+
     public Board(){}
+
 
     public Board(String title, String content) {
         this.title = title;
