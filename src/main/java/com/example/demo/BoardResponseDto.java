@@ -10,7 +10,7 @@ import lombok.Getter;
 
 public class BoardResponseDto {
 
-    private Integer id;
+    private Long id;
     private String title;
     private String content;
 

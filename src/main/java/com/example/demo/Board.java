@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Board {
     @Id  //엔티티에서 각 데이터들을 구분하기 위해 필요
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 200)
     private String title;
