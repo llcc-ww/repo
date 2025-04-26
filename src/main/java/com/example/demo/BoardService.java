@@ -3,6 +3,7 @@ package com.example.demo;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class BoardService {
             return boardDetail;
 
         } else {
-            throw new DataNotFoundException("question not found");
+            throw new DataNotFoundException("board not found");
         }
     }
 
@@ -64,11 +65,14 @@ public class BoardService {
         this.boardRepository.save(newBoard); //디비에 저장
     }
 
-    /*
+    @Transactional
     public void updateBoard(Integer id, BoardRequestDto boardRequestDto) {
-        Board updateBoard = bo
+        Board board = this.boardRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("board not found"));
+        board.update(boardRequestDto.getTitle(), boardRequestDto.getContent());
     }
-    */
+
+
 
 }
 

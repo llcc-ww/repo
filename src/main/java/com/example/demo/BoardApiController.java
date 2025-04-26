@@ -1,15 +1,13 @@
 package com.example.demo;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@Controller
-public class TestController {
+@RestController
+public class BoardApiController {
 
     private final BoardService boardService;
 
@@ -45,11 +43,14 @@ public class TestController {
         return "board_form";
     }
 
-    /*
-    @PutMapping("/api/board/update/{id}")
+
+    @PatchMapping("/api/board/update/{id}")
     public void boardUpdate(@PathVariable("id") Integer id, @RequestBody BoardRequestDto boardRequestDto) {
-        return this.boardService.updateBoard(id,ba);
+        this.boardService.updateBoard(id,boardRequestDto);
     }
-    */
+
+    /// ?????질문!!!!! 컨트롤러에서 각 메소드의 리턴값 DTO로 해야하는건지 질문하기
+
+
 
 }
