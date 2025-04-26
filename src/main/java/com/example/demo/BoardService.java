@@ -15,7 +15,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    //작성글 목록 가져오는 메소드 (엔티티만 사용)
+    //작성글 목록 가져오는 메소드 (엔티티만 사용했을 때 적었던 코드)
     /*
     public List<Board> getBoardList() {
         return this.boardRepository.findAll();
@@ -70,6 +70,13 @@ public class BoardService {
         Board board = this.boardRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("board not found"));
         board.update(boardRequestDto.getTitle(), boardRequestDto.getContent());
+    }
+
+    @Transactional
+    public void deleteBoard(Integer id) {
+        Board board=this.boardRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("board not found"));
+        this.boardRepository.delete(board);
     }
 
 

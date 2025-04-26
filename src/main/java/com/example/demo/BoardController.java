@@ -46,7 +46,7 @@ public class BoardController {
 
     @GetMapping("/board/update/{id}")
     public String boardUpdate(@PathVariable("id") Integer id) {
-        return "board_form";
+        return "board_update";
     }
 
 
