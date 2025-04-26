@@ -19,15 +19,15 @@ public class BoardController {
 
     @GetMapping("/board/list")
     public String list(Model model) {
-        List<BoardResponseDto> boardList = this.boardService.getBoardDtoList();
+        List<BoardResponseDto> boardList = boardService.getBoardDtoList();
         //List<Board> boardList = this.boardService.getBoardList();
         model.addAttribute("boardList", boardList);
         return "board_list";
     }
 
     @GetMapping(value="/board/detail/{id}")
-    public String detail(@PathVariable("id") Integer id, Model model) {
-        BoardResponseDto board = this.boardService.getBoard(id);
+    public String detail(@PathVariable("id") Long id, Model model) {
+        BoardResponseDto board = boardService.getBoard(id);
         model.addAttribute("board", board);
         return "board_detail";
     }
@@ -40,12 +40,12 @@ public class BoardController {
     @PostMapping("/board/create")
     public String questionCreate(@RequestParam(value="title") String title, @RequestParam(value="content") String content) {
         // 질문을 저장
-        this.boardService.createNewBoard(title,content);
+        boardService.createNewBoard(title,content);
         return "redirect:/board/list"; // 질문 저장후 질문목록으로 이동
     }
 
     @GetMapping("/board/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id) {
+    public String boardUpdate(@PathVariable("id") Long id) {
         return "board_update";
     }
 

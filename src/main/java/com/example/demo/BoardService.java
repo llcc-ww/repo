@@ -17,7 +17,7 @@ public class BoardService {
 
     //작성글 목록 DTO 객체에 담아서 가져오는 메소드
     public List<BoardResponseDto> getBoardDtoList() {
-        List<Board> boardList = this.boardRepository.findAll();
+        List<Board> boardList = boardRepository.findAll();
 
         ArrayList<BoardResponseDto> boardDtoList = new ArrayList<>();
 
@@ -34,8 +34,8 @@ public class BoardService {
     }
 
     //특정 게시글 하나만 가져오는 메소드
-    public BoardResponseDto getBoard(Integer id) {
-        Optional<Board> board = this.boardRepository.findById(id);
+    public BoardResponseDto getBoard(Long id) {
+        Optional<Board> board = boardRepository.findById(id);
         if (board.isPresent()) {
             Board temp=board.get(); //Optional에 들어있는 Board 객체를 가져와 반환
             //엔티티를 Dto로 바꿔서 반환
@@ -60,7 +60,7 @@ public class BoardService {
 
     //게시글 수정 메소드
     @Transactional
-    public void updateBoard(Integer id, BoardRequestDto boardRequestDto) {
+    public void updateBoard(Long id, BoardRequestDto boardRequestDto) {
         Board board = this.boardRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("board not found"));
         board.update(boardRequestDto.getTitle(), boardRequestDto.getContent());
@@ -68,7 +68,7 @@ public class BoardService {
 
     //게시글 삭제 메소드
     @Transactional
-    public void deleteBoard(Integer id) {
+    public void deleteBoard(Long id) {
         Board board=this.boardRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("board not found"));
         this.boardRepository.delete(board);
