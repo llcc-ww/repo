@@ -17,8 +17,7 @@ public class BoardApiController {
         return this.boardService.getBoardDtoList();  //json 형태로 값만 반환
     }
 
-    @GetMapping(value="api/board/detail/{id}")
-    //@ResponseBody
+    @GetMapping("api/board/detail/{id}")
     public BoardResponseDto detail(@PathVariable("id") Integer id) {
         return this.boardService.getBoard(id);
     }

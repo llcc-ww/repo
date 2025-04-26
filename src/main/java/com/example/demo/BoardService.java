@@ -15,13 +15,6 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    //작성글 목록 가져오는 메소드 (엔티티만 사용했을 때 적었던 코드)
-    /*
-    public List<Board> getBoardList() {
-        return this.boardRepository.findAll();
-    }
-    */
-
     //작성글 목록 DTO 객체에 담아서 가져오는 메소드
     public List<BoardResponseDto> getBoardDtoList() {
         List<Board> boardList = this.boardRepository.findAll();
@@ -40,7 +33,7 @@ public class BoardService {
         return boardDtoList;
     }
 
-    //
+    //특정 게시글 하나만 가져오는 메소드
     public BoardResponseDto getBoard(Integer id) {
         Optional<Board> board = this.boardRepository.findById(id);
         if (board.isPresent()) {
@@ -58,13 +51,14 @@ public class BoardService {
         }
     }
 
-    //새 글 디비에 저장
+    //새 글 디비에 저장하는 메소드
     public void createNewBoard(String title, String content) {
         BoardRequestDto requestDTO = new BoardRequestDto(title, content); // DTO 객체로 먼저 받기
         Board newBoard = requestDTO.toEntity(); //엔티티 객체로 변환
         this.boardRepository.save(newBoard); //디비에 저장
     }
 
+    //게시글 수정 메소드
     @Transactional
     public void updateBoard(Integer id, BoardRequestDto boardRequestDto) {
         Board board = this.boardRepository.findById(id)
@@ -72,6 +66,7 @@ public class BoardService {
         board.update(boardRequestDto.getTitle(), boardRequestDto.getContent());
     }
 
+    //게시글 삭제 메소드
     @Transactional
     public void deleteBoard(Integer id) {
         Board board=this.boardRepository.findById(id)
